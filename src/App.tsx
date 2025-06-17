@@ -1,25 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {ProductCard, ProductCardCurrency, ProductCardProps} from "./components/ProductCard";
+import * as SC from "./styles/ProductCardWrapper.styles"
+
+const mockData: ProductCardProps[] = [
+  {
+    title: "Название товара 1",
+    origin: "Россия",
+    price: 34900,
+    currency: ProductCardCurrency.RUB,
+    imageUrl: "/download.jpeg"
+  },
+  {
+    title: "Название товара 2",
+    origin: "Америка",
+    price: 124,
+    currency: ProductCardCurrency.USD,
+    imageUrl: "/download.jpeg"
+  },
+  {
+    title: "Название товара 3",
+    origin: "Литва",
+    price: 2234,
+    currency: ProductCardCurrency.EUR,
+    imageUrl: "/download.jpeg"
+  },
+]
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <SC.ProductCardWrapper>
+      {
+        mockData?.map((product, index) => <ProductCard key={`${index}-${product.title}`} {...product} /> ) || <div>Товары отсутсвуют</div>
+      }
+    </SC.ProductCardWrapper>
   );
 }
 
